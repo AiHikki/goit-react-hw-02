@@ -1,17 +1,13 @@
 import styles from './Options.module.css';
 
-export const Options = ({
-  resetFeedback,
-  totalFeedback,
-  addGoodFeedback,
-  addBadFeedback,
-  addNeutralFeedback,
-}) => {
+export const Options = ({ resetFeedback, totalFeedback, addFeedback, feedback }) => {
   return (
     <div className={styles.options}>
-      <button onClick={addGoodFeedback}>Good</button>
-      <button onClick={addNeutralFeedback}>Neutral</button>
-      <button onClick={addBadFeedback}>Bad</button>
+      {Object.keys(feedback).map(el => (
+        <button onClick={() => addFeedback(el)} key={el}>
+          {el}
+        </button>
+      ))}
       {Boolean(totalFeedback) && <button onClick={resetFeedback}>Reset</button>}
     </div>
   );
